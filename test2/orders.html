@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        
+        #sidebar {
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+        }
+
+        #sidebar.active {
+            transform: translateX(0);
+        }
+
+       
+        #main-content {
+            padding-left: 64px; /* Width of the sidebar */
+        }
+
+        
+        .bg-completed-status {
+    background-size: 5px 5px; 
+}
+
+.bg-on-hold-status {
+    background-size: 5px 5px; 
+}
+
+
+
+        
+        .cus:focus:outline-none {
+            outline: none;
+        }
+
+    </style>
+</head>
+
+<body class="bg-gray-200">
+    
+    <nav class="bg-gray-50 p-4 flex justify-between items-center">
+        <div class="flex justify-between space-x-4 items-center">
+            <button id="menu-toggle" class="text-gray-500 cus:focus:outline-none">
+              <img src="pic/burger-bar.png" alt="Menu Icon" class="h-6 w-6">
+            </button>
+            <div class="relative">
+              <input type="text" class="px-3 py-1 rounded-lg bg-gray-200 text-gray-500" placeholder="Search...">
+            </div>
+          </div>
+          
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <img src="pic/profile.png" alt="Profile Picture" class="w-10 h-10 rounded-full cursor-pointer" onclick="toggleDropdown()">
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden" id="dropdown" style="display:none;">
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <div class="container mx-auto p-4" id="main-content">
+    </div>
+    <div class="container mx-auto p-4" id="main-content">
+        <table class="min-w-full bg-white shadow-md rounded my-6">
+          <thead>
+            <tr class="border-b">
+              <th class="text-left p-3 px-5 ">ID</th>
+              <th class="text-left p-3 px-5 ">Name</th>
+              <th class="text-left p-3 px-5 ">ADDRESS</th>
+              <th class="text-left p-3 px-5 ">DATE</th>
+              <th class="text-left p-3 px-5 ">TYPE</th>
+              <th class="p-3 px-5 justify-center">STATUS</th> 
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="p-3 px-5 font-bold">00001</td>
+              <td class="p-3 px-5 font-bold">jhon wick</td>
+              <td class="p-3 px-5 font-bold">florida</td>
+              <td class="p-3 px-5 font-bold">12/02/2024</td>
+              <td class="p-3 px-5 font-bold">watch</td>
+              <td class="p-3 px-5">
+                <div class="flex justify-center font-bold ">
+                    <div class="text-green-400 bg-green-100 p-2 rounded-md bg-completed-status">
+                        Completed
+                    </div>
+                </div>
+            </td>            
+            </tr>
+            <tr class="border-b">
+              <td class="p-3 px-5 font-bold">00002</td>
+              <td class="p-3 px-5 font-bold">felix pewdiepie</td>
+              <td class="p-3 px-5 font-bold">paris</td>
+              <td class="p-3 px-5 font-bold">01/01/2024</td>
+              <td class="p-3 px-5 font-bold">watch</td>
+              <td class="p-3 px-5">
+                <div class="flex justify-center font-bold ">
+                    <div class="text-yellow-400 bg-yellow-100 p-2 rounded-md bg-on-hold-status">
+                        On Hold
+                    </div>
+                </div>
+            </td>
+          </tbody>
+        </table>
+
+        <!-- Sidebar -->
+        <div id="sidebar"
+            class="fixed top-0 left-0 h-full bg-gray-50 text-black w-64 flex flex-col justify-center py-8">
+            <!-- Close button -->
+            <button id="close-btn"
+                class="absolute top-4 left-3 text-black cus:focus:outline-none">
+                <img src="pic/close.png" alt="Close Icon" class="h-6 w-6">
+            </button>
+            <a href="dashboard.html" class="px-4 py-2 hover:bg-blue-400">Dashboard</a>
+            <a href="orders.html" class="px-4 py-2 hover:bg-blue-400">Order List</a>
+            <a href="contact.html" class="px-4 py-2 hover:bg-blue-400">Contacts</a>
+    </div>
+
+
+
+    
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
+        });
+
+        document.getElementById('close-btn').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+        });
+        //profile
+
+        function toggleDropdown() {
+    var dropdown = document.getElementById("dropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+
+</html>

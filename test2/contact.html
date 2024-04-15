@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        
+        #sidebar {
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+        }
+
+        #sidebar.active {
+            transform: translateX(0);
+        }
+
+        #main-content {
+            padding-left: 64px; 
+        }
+
+       
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-container .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-container .form-group input[type="text"],
+        .form-container .form-group input[type="email"],
+        .form-container .form-group input[type="tel"],
+        .form-container .form-group input[type="date"],
+        .form-container .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            outline: none;
+        }
+
+        .form-container .form-group button {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .form-container .form-group button:hover {
+            background-color: #357ae8;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200">
+    <!-- Nav -->
+    <nav class="bg-gray-50 p-4 flex justify-between items-center">
+        <div class="flex justify-between space-x-4 items-center">
+            <button id="menu-toggle" class="text-gray-500 cus:focus:outline-none">
+              <img src="pic/burger-bar.png" alt="Menu Icon" class="h-6 w-6">
+            </button>
+            <div class="relative">
+              <input type="text" class="px-3 py-1 rounded-lg bg-gray-200 text-gray-500" placeholder="Search...">
+            </div>
+          </div>
+          
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <img src="pic/profile.png" alt="Profile Picture" class="w-10 h-10 rounded-full cursor-pointer" onclick="toggleDropdown()">
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden" id="dropdown" style="display:none;">
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+              <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <div class="container mx-auto p-4" id="main-content">
+    </div>
+
+        
+    <div id="sidebar"
+        class="fixed top-0 left-0 h-full bg-gray-50 text-black w-64 flex flex-col justify-center py-8">
+       
+        <button id="close-btn"
+            class="absolute top-4 left-3 text-black cus:focus:outline-none">
+            <img src="pic/close.png" alt="Close Icon" class="h-6 w-6">
+        </button> 
+        <a href="dashboard.html" class="px-4 py-2 hover:bg-blue-400 ">Dashboard</a>
+        <a href="orders.html" class="px-4 py-2 hover:bg-blue-400 ">Order List</a>
+        <a href="contact.html" class="px-4 py-2 hover:bg-blue-400 ">Contacts</a>
+    </div>
+</div>
+
+
+    
+    <div class="form-container">
+       
+        <h2 class="text-2xl font-semibold mb-4">Add New Contact</h2>
+        
+        <form action="#" method="POST">
+           
+            <div class="form-group flex justify-between">
+                <input type="text" id="first-name" name="first-name" placeholder="First Name" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <input type="text" id="last-name" name="last-name" placeholder="Last Name" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Phone:</label>
+                <input type="tel" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            
+            <div class="form-group">
+                
+            </div>
+   
+            <div class="form-group flex justify-between">
+                <input type="date" id="birth-date" name="birth-date" placeholder="Birth Date" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <select id="gender" name="gender" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                    Add New
+                </button>
+            </div>
+        </form>
+    </div>
+    >
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
+        });
+
+        document.getElementById('close-btn').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+        });
+        //profile
+
+        function toggleDropdown() {
+    var dropdown = document.getElementById("dropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+
+</html>
+
+
